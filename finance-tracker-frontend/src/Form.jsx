@@ -1,12 +1,6 @@
 
 function Form(props){
 
-
-
-
-
-
-
     return(
         <div>
             <input type='text' value={props.category} placeholder= {"Enter Category"} onChange={props.handleCategory} />
