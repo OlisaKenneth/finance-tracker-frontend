@@ -1,29 +1,41 @@
 import { useState } from "react";
 
-function DisplaySavingsGoal({ savingsGoal, addToSavings }) {
+function DisplaySavingsGoal({ savingsGoals, addToSavings }) {
+    const [selectedId, setSelectedId] = useState("")
     const [amount, setAmount] = useState("")
 
-    if (!savingsGoal) return <p>No savings goal set.</p>
+    const selected = savingsGoals.find(g => g.id === parseInt(selectedId))
 
-    const progress = ((savingsGoal.savedSoFar / savingsGoal.targetAmount) * 100).toFixed(2)
+    if (!savingsGoals.length) return <p>No savings goals set.</p>
 
     return (
         <div>
             <h2>Savings Goal</h2>
-            <p>Goal: {savingsGoal.goalName}</p>
-            <p>Saved: ${savingsGoal.savedSoFar} / ${savingsGoal.targetAmount}</p>
-            <p>Progress: {progress}%</p>
-            <p>Monthly Target: ${(savingsGoal.targetAmount / savingsGoal.months).toFixed(2)}</p>
-            <input
-                type="number"
-                placeholder="Amount to add"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-            />
-            <button onClick={() => {
-                addToSavings(savingsGoal.goalName, amount)
-                setAmount("")
-            }}>Add to Savings</button>
+            <select value={selectedId} onChange={(e) => setSelectedId(e.target.value)}>
+                <option value="">Select a goal</option>
+                {savingsGoals.map(g => (
+                    <option key={g.id} value={g.id}>{g.goalName}</option>
+                ))}
+            </select>
+
+            {selected && (
+                <div>
+                    <p>Goal: {selected.goalName}</p>
+                    <p>Saved: ${selected.savedSoFar} / ${selected.targetAmount}</p>
+                    <p>Progress: {((selected.savedSoFar / selected.targetAmount) * 100).toFixed(2)}%</p>
+                    <p>Monthly Target: ${(selected.targetAmount / selected.months).toFixed(2)}</p>
+                    <input
+                        type="number"
+                        placeholder="Amount to add"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                    />
+                    <button onClick={() => {
+                        addToSavings(selected.goalName, amount)
+                        setAmount("")
+                    }}>Add to Savings</button>
+                </div>
+            )}
         </div>
     )
 }

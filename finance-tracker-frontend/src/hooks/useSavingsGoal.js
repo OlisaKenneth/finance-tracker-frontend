@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 
 function useSavingsGoal() {
-    const [savingsGoal, setSavingsGoal] = useState(null)
+    const [savingsGoals, setSavingsGoals] = useState([])
 
     function fetchSavingsGoal() {
         fetch("https://finance-tracker-production-1547.up.railway.app/api/savings_goal")
             .then(res => res.json())
-            .then(data => setSavingsGoal(data[0]))
+            .then(data => setSavingsGoals(data))  // ← store all, not just [0]
     }
+
 
     useEffect(() => fetchSavingsGoal(), [])
 
@@ -31,7 +32,7 @@ function useSavingsGoal() {
             .then(() => fetchSavingsGoal())
     }
 
-    return { savingsGoal, fetchSavingsGoal, createSavingsGoal, addToSavings }
+    return { savingsGoals, createSavingsGoal, addToSavings }
 }
 
 export default useSavingsGoal;

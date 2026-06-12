@@ -17,7 +17,7 @@ function App() {
     const { amount, category: tCategory, description, date,
         setAmount, setCategory, setDescription, setDate,
         handleSubmit } = useTransactionForm(fetchTransactions)
-    const { savingsGoal, createSavingsGoal, addToSavings } = useSavingsGoal()
+    const { savingsGoals, createSavingsGoal, addToSavings } = useSavingsGoal()
 
     return (
         <>
@@ -30,7 +30,7 @@ function App() {
                 setAmount={setAmount} setCategory={setCategory}
                 setDescription={setDescription} setDate={setDate}
                 handleSubmit={handleSubmit} />
-            <DisplaySavingsGoal savingsGoal={savingsGoal} addToSavings={addToSavings} />
+            <DisplaySavingsGoal savingsGoals={savingsGoals} addToSavings={addToSavings} />
             <SavingsGoalForm createSavingsGoal={createSavingsGoal} />
         </>
     )
