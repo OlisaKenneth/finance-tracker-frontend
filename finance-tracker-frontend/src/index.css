@@ -37,6 +37,52 @@ h3 {
     padding-left: 4px;
 }
 
+/* ── APP HEADER ── */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.app-logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.3px;
+}
+
+/* ── NAV ── */
+nav {
+    display: flex;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+nav a {
+    text-decoration: none;
+    color: #6e6e73;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 9px;
+    transition: all 0.15s ease;
+}
+
+nav a:hover {
+    color: #1d1d1f;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+nav a.active {
+    color: #1d1d1f;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
 /* ── CARDS ── */
 .card {
     background: #ffffff;
@@ -111,7 +157,6 @@ button:active {
     transform: scale(0.99);
 }
 
-/* ── DELETE BUTTON ── */
 button.delete {
     background: transparent;
     color: #ff3b30;
@@ -125,7 +170,6 @@ button.delete:hover {
     background: rgba(255, 59, 48, 0.06);
 }
 
-/* ── UPDATE BUTTON ── */
 button.update {
     background: transparent;
     color: #0071e3;
@@ -139,7 +183,6 @@ button.update:hover {
     background: rgba(0, 113, 227, 0.06);
 }
 
-/* ── ADD TO SAVINGS BUTTON ── */
 button.savings {
     background: #34c759;
 }
@@ -293,63 +336,7 @@ button.savings:hover {
     margin-bottom: 16px;
 }
 
-/* ── PAGE HEADER ── */
-.page-header {
-    margin-bottom: 32px;
-}
-
-.page-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1d1d1f;
-    letter-spacing: -0.5px;
-    margin-bottom: 4px;
-}
-
-.page-subtitle {
-    font-size: 15px;
-    color: #6e6e73;
-}
-
-/* ── EMPTY STATE ── */
-.empty {
-    text-align: center;
-    padding: 32px;
-    color: #6e6e73;
-    font-size: 14px;
-}
-
-nav {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 32px;
-    background: rgba(0, 0, 0, 0.05);
-    padding: 4px;
-    border-radius: 12px;
-    width: fit-content;
-}
-
-nav a {
-    text-decoration: none;
-    color: #6e6e73;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 20px;
-    border-radius: 9px;
-    transition: all 0.15s ease;
-}
-
-nav a:hover {
-    color: #1d1d1f;
-    background: rgba(255, 255, 255, 0.7);
-}
-
-nav a.active {
-    color: #1d1d1f;
-    background: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-}
-
+/* ── DASHBOARD ── */
 .stat-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -385,16 +372,10 @@ nav a.active {
     color: #34c759;
 }
 
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-.app-logo {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1d1d1f;
-    letter-spacing: -0.3px;
+/* ── EMPTY STATE ── */
+.empty {
+    text-align: center;
+    padding: 32px;
+    color: #6e6e73;
+    font-size: 14px;
 }
