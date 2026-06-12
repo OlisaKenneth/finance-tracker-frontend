@@ -28,6 +28,8 @@ function useForm(fetchBudgets) {
             .then(data => {
                 console.log("budget created: ", data)
                 fetchBudgets()
+                setCategory("")
+                setLimit(0)
             })
 
         setCategory("")
