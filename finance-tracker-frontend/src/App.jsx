@@ -21,15 +21,14 @@ function App() {
 
     return (
         <>
+            <div className="page-header">
+                <p className="page-title">Finance Tracker</p>
+                <p className="page-subtitle">Track your spending, savings, and goals</p>
+            </div>
             <DisplayBudget handleDelete={handleDelete} handleUpdate={handleUpdate} budget={budget} />
-            <Form handleBuudget={handleBuudget} handleCategory={handleCategory}
-                  handleLimit={handleLimit} category={category} limit={limit} />
+            <Form handleBuudget={handleBuudget} handleCategory={handleCategory} handleLimit={handleLimit} category={category} limit={limit} />
             <DisplayTransactions transactions={transactions} />
-            <TransactionForm
-                amount={amount} category={tCategory} description={description} date={date}
-                setAmount={setAmount} setCategory={setCategory}
-                setDescription={setDescription} setDate={setDate}
-                handleSubmit={handleSubmit} />
+            <TransactionForm amount={amount} category={tCategory} description={description} date={date} setAmount={setAmount} setCategory={setCategory} setDescription={setDescription} setDate={setDate} handleSubmit={handleSubmit} />
             <DisplaySavingsGoal savingsGoals={savingsGoals} addToSavings={addToSavings} />
             <SavingsGoalForm createSavingsGoal={createSavingsGoal} />
         </>

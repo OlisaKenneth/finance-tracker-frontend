@@ -1,0 +1,320 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    min-height: 100vh;
+}
+
+#root {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6e6e73;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-left: 4px;
+}
+
+h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6e6e73;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-left: 4px;
+}
+
+/* ── CARDS ── */
+.card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+/* ── INPUTS ── */
+input {
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    outline: none;
+    font-family: inherit;
+    width: 100%;
+    margin-top: 8px;
+}
+
+input:focus {
+    border-color: #0071e3;
+    background: #fff;
+}
+
+input::placeholder {
+    color: #aeaeb2;
+}
+
+select {
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    outline: none;
+    font-family: inherit;
+    width: 100%;
+    margin-top: 8px;
+}
+
+select:focus {
+    border-color: #0071e3;
+    background: #fff;
+}
+
+/* ── BUTTONS ── */
+button {
+    padding: 11px 20px;
+    border-radius: 10px;
+    border: none;
+    background: #0071e3;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.15s ease;
+}
+
+button:hover {
+    background: #0077ed;
+}
+
+button:active {
+    background: #006edb;
+    transform: scale(0.99);
+}
+
+/* ── DELETE BUTTON ── */
+button.delete {
+    background: transparent;
+    color: #ff3b30;
+    border: 0.5px solid rgba(255, 59, 48, 0.3);
+    padding: 6px 12px;
+    font-size: 13px;
+    margin-top: 0;
+}
+
+button.delete:hover {
+    background: rgba(255, 59, 48, 0.06);
+}
+
+/* ── UPDATE BUTTON ── */
+button.update {
+    background: transparent;
+    color: #0071e3;
+    border: 0.5px solid rgba(0, 113, 227, 0.3);
+    padding: 6px 12px;
+    font-size: 13px;
+    margin-top: 0;
+}
+
+button.update:hover {
+    background: rgba(0, 113, 227, 0.06);
+}
+
+/* ── ADD TO SAVINGS BUTTON ── */
+button.savings {
+    background: #34c759;
+}
+
+button.savings:hover {
+    background: #30b350;
+}
+
+/* ── BUDGET ROW ── */
+.budget-row {
+    padding: 14px 0;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+}
+
+.budget-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.budget-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.budget-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+.budget-amount {
+    font-size: 13px;
+    color: #6e6e73;
+}
+
+.budget-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.budget-actions input {
+    flex: 1;
+    min-width: 100px;
+    margin-top: 0;
+}
+
+/* ── PROGRESS BAR ── */
+.bar-track {
+    height: 5px;
+    background: #f0f0f2;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: #0071e3;
+    transition: width 0.3s ease;
+}
+
+/* ── TRANSACTION ROW ── */
+.transaction-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+    font-size: 14px;
+    color: #1d1d1f;
+}
+
+.transaction-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.transaction-date {
+    font-size: 12px;
+    color: #6e6e73;
+}
+
+.transaction-category {
+    font-weight: 500;
+}
+
+.transaction-amount {
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+/* ── FORM ROW ── */
+.form-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-top: 16px;
+}
+
+.form-row input {
+    flex: 1;
+    min-width: 100px;
+    margin-top: 0;
+}
+
+.form-row button {
+    margin-top: 0;
+    white-space: nowrap;
+}
+
+/* ── SAVINGS ── */
+.savings-amount {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.5px;
+}
+
+.savings-target {
+    font-size: 14px;
+    color: #6e6e73;
+    margin-bottom: 12px;
+}
+
+.savings-bar-track {
+    height: 8px;
+    background: #f0f0f2;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.savings-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: #34c759;
+    transition: width 0.3s ease;
+}
+
+.savings-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #6e6e73;
+    margin-bottom: 16px;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.page-subtitle {
+    font-size: 15px;
+    color: #6e6e73;
+}
+
+/* ── EMPTY STATE ── */
+.empty {
+    text-align: center;
+    padding: 32px;
+    color: #6e6e73;
+    font-size: 14px;
+}

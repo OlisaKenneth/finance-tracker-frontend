@@ -13,15 +13,14 @@ function SavingsGoalForm({ createSavingsGoal }) {
     }
 
     return (
-        <div>
+        <div className="card">
             <h3>Create Savings Goal</h3>
-            <input type="text" placeholder="Goal name" value={goalName}
-                   onChange={(e) => setGoalName(e.target.value)} />
-            <input type="number" placeholder="Target amount" value={targetAmount}
-                   onChange={(e) => setTargetAmount(e.target.value)} />
-            <input type="number" placeholder="Months" value={months}
-                   onChange={(e) => setMonths(e.target.value)} />
-            <button onClick={handleSubmit}>Create Goal</button>
+            <div className="form-row">
+                <input type="text" placeholder="Goal name" value={goalName} onChange={(e) => setGoalName(e.target.value)} />
+                <input type="number" placeholder="Target amount" value={targetAmount} onChange={(e) => setTargetAmount(e.target.value)} />
+                <input type="number" placeholder="Months" value={months} onChange={(e) => setMonths(e.target.value)} />
+                <button onClick={handleSubmit}>Create Goal</button>
+            </div>
         </div>
     )
 }
