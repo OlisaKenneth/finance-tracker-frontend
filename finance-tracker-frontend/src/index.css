@@ -384,3 +384,17 @@ nav a.active {
 .stat-value.remaining {
     color: #34c759;
 }
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.app-logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.3px;
+}

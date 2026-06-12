@@ -23,17 +23,15 @@ function App() {
 
     return (
         <>
-            <div className="page-header">
-                <p className="page-title">Finance Tracker</p>
-                <p className="page-subtitle">Track your spending, savings, and goals</p>
-            </div>
-
-            <nav>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/budgets">Budgets</NavLink>
-                <NavLink to="/transactions">Transactions</NavLink>
-                <NavLink to="/savings">Savings</NavLink>
-            </nav>
+            <header className="app-header">
+                <p className="app-logo">Finance Tracker</p>
+                <nav>
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/budgets">Budgets</NavLink>
+                    <NavLink to="/transactions">Transactions</NavLink>
+                    <NavLink to="/savings">Savings</NavLink>
+                </nav>
+            </header>
 
             <Routes>
                 <Route path="/" element={
