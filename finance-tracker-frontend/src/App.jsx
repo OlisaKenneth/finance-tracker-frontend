@@ -10,6 +10,7 @@ import TransactionForm from "./TransactionForm.jsx"
 import DisplaySavingsGoal from "./DisplaySavingsGoal.jsx"
 import SavingsGoalForm from "./SavingsGoalForm.jsx"
 import {Routes, Route, NavLink} from "react-router-dom"
+import Dashboard from "./Dashboard.jsx"
 
 function App() {
     const { budget, fetchBudgets, handleDelete, handleUpdate } = useBudgets()
@@ -36,7 +37,11 @@ function App() {
 
             <Routes>
                 <Route path="/" element={
-                    <p className="empty">Welcome — use the nav above to get started.</p>
+                    <Dashboard
+                        budget={budget}
+                        transactions={transactions}
+                        savingsGoals={savingsGoals}
+                    />
                 } />
 
 

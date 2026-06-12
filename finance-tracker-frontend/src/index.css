@@ -349,3 +349,38 @@ nav a.active {
     background: #ffffff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 0.5px solid rgba(0, 0, 0, 0.08);
+    padding: 20px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #6e6e73;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.5px;
+}
+
+.stat-value.spent {
+    color: #ff3b30;
+}
+
+.stat-value.remaining {
+    color: #34c759;
+}
