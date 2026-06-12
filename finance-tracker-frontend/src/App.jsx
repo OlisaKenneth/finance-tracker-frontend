@@ -8,6 +8,7 @@ import Form from "./Form.jsx"
 import DisplayTransactions from "./DisplayTransactions.jsx"
 import TransactionForm from "./TransactionForm.jsx"
 import DisplaySavingsGoal from "./DisplaySavingsGoal.jsx"
+import SavingsGoalForm from "./SavingsGoalForm.jsx"
 
 function App() {
     const { budget, fetchBudgets, handleDelete, handleUpdate } = useBudgets()
@@ -16,7 +17,7 @@ function App() {
     const { amount, category: tCategory, description, date,
         setAmount, setCategory, setDescription, setDate,
         handleSubmit } = useTransactionForm(fetchTransactions)
-    const { savingsGoal, fetchSavingsGoal } = useSavingsGoal()
+    const { savingsGoal, fetchSavingsGoal, createSavingsGoal } = useSavingsGoal()
 
     return (
         <>
@@ -30,6 +31,7 @@ function App() {
                 setDescription={setDescription} setDate={setDate}
                 handleSubmit={handleSubmit} />
             <DisplaySavingsGoal savingsGoal={savingsGoal} />
+            <SavingsGoalForm createSavingsGoal={createSavingsGoal} />
         </>
     )
 }
