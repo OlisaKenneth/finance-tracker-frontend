@@ -2,10 +2,12 @@ import useBudgets from './hooks/useBudgets.js'
 import useForm from './hooks/useForm.js'
 import useTransactions from './hooks/useTransactions.js'
 import useTransactionForm from './hooks/useTransactionForm.js'
+import useSavingsGoal from './hooks/useSavingsGoal.js'
 import DisplayBudget from "./DisplayBudget.jsx"
 import Form from "./Form.jsx"
 import DisplayTransactions from "./DisplayTransactions.jsx"
 import TransactionForm from "./TransactionForm.jsx"
+import DisplaySavingsGoal from "./DisplaySavingsGoal.jsx"
 
 function App() {
     const { budget, fetchBudgets, handleDelete, handleUpdate } = useBudgets()
@@ -14,6 +16,7 @@ function App() {
     const { amount, category: tCategory, description, date,
         setAmount, setCategory, setDescription, setDate,
         handleSubmit } = useTransactionForm(fetchTransactions)
+    const { savingsGoal, fetchSavingsGoal } = useSavingsGoal()
 
     return (
         <>
@@ -26,6 +29,7 @@ function App() {
                 setAmount={setAmount} setCategory={setCategory}
                 setDescription={setDescription} setDate={setDate}
                 handleSubmit={handleSubmit} />
+            <DisplaySavingsGoal savingsGoal={savingsGoal} />
         </>
     )
 }
