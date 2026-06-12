@@ -16,7 +16,7 @@ function App() {
     const { transactions, fetchTransactions } = useTransactions()
     const { amount, category: tCategory, description, date,
         setAmount, setCategory, setDescription, setDate,
-        handleSubmit } = useTransactionForm(fetchTransactions)
+        handleSubmit } = useTransactionForm(fetchTransactions, fetchBudgets)
     const { savingsGoals, createSavingsGoal, addToSavings } = useSavingsGoal()
 
     return (

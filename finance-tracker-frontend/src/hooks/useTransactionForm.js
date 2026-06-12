@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function useTransactionForm(fetchTransactions) {
+function useTransactionForm(fetchTransactions, fetchBudgets) {
     const [amount, setAmount] = useState(0)
     const [category, setCategory] = useState("")
     const [description, setDescription] = useState("")
@@ -16,7 +16,8 @@ function useTransactionForm(fetchTransactions) {
             .then(data => {
                 console.log("transaction created: ", data)
                 fetchTransactions()
-                setAmount(0)
+                fetchBudgets()    // ← add this
+                setAmount("")
                 setCategory("")
                 setDescription("")
                 setDate("")
