@@ -3,7 +3,6 @@
 
 function DisplayBudget(props){
 
-
     return(
         <div>
             <h2>List of Budgets</h2>
