@@ -1,7 +1,5 @@
 import {useState} from "react";
 
-
-
 function useForm(fetchBudgets) {
     const [category, setCategory] = useState("")
     const [limit, setLimit] = useState(0)
@@ -19,8 +17,8 @@ function useForm(fetchBudgets) {
         monthlyLimit: limit
     }
 
-    function handleBuudget() {
 
+    function handleBuudget() {
         fetch("https://finance-tracker-production-1547.up.railway.app/api/budgets", {
             method: 'POST',
             headers: {"Content-Type": "application/json"},

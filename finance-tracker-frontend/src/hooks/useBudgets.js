@@ -1,8 +1,6 @@
 import {useState, useEffect} from "react";
 
-
 function useBudgets() {
-//fetchBudgets to get the data
     const [budget, createBudget] = useState([])
 
     function fetchBudgets() {
@@ -11,17 +9,14 @@ function useBudgets() {
             .then(data => createBudget(data))
     }
 
-//for displayBudget we use this to display them in a list
     useEffect(() => fetchBudgets(), [])
 
     const handleDelete = async (id) => {
         try {
             const response = await fetch(`https://finance-tracker-production-1547.up.railway.app/api/budgets/${id}`, {
-                method: 'DELETE', // Specify the HTTP method
+                method: 'DELETE',
             });
-
             if (response.ok) {
-                // 2. Remove the item from React state to update the UI
                 createBudget(budget.filter(user => user.id !== id));
             } else {
                 console.error('Failed to delete item');
@@ -30,7 +25,30 @@ function useBudgets() {
             console.error('Error occurred:', error);
         }
     };
-    return { budget, fetchBudgets, handleDelete }
+
+
+
+    const handleUpdate = async (id, newLimit, category) => {
+        try {
+            const response = await fetch(`https://finance-tracker-production-1547.up.railway.app/api/budgets/${id}`, {
+                method: 'PUT',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    category: category,
+                    monthlyLimit: newLimit
+                })
+            });
+            if (response.ok) {
+                fetchBudgets()
+            } else {
+                console.error('Failed to update item');
+            }
+        } catch (error) {
+            console.error('Error occurred:', error);
+        }
+    };
+
+    return { budget, fetchBudgets, handleDelete, handleUpdate }
 }
 
 export default useBudgets;

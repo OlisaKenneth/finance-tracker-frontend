@@ -5,7 +5,7 @@ import DisplayBudget from "./DisplayBudget.jsx";
 function App() {
 
 
-    const { budget, fetchBudgets, handleDelete } = useBudgets()
+    const { budget, fetchBudgets, handleDelete, handleUpdate } = useBudgets()
     const { category, limit, handleCategory,
         handleLimit, handleBuudget } = useForm(fetchBudgets)
 
@@ -13,7 +13,7 @@ function App() {
 
     return(
     <>
-        <DisplayBudget handleDelete={handleDelete} budget={budget}/>
+        <DisplayBudget handleDelete={handleDelete} handleUpdate={handleUpdate} budget={budget}/>
         <Form handleBuudget={handleBuudget} handleCategory={handleCategory} handleLimit={handleLimit} category={category}
               limit={limit}/>
     </>
