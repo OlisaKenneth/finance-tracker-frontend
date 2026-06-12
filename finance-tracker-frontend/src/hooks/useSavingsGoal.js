@@ -23,7 +23,15 @@ function useSavingsGoal() {
             .then(() => fetchSavingsGoal())
     }
 
-    return { savingsGoal, fetchSavingsGoal, createSavingsGoal }
+    function addToSavings(goalName, value) {
+        fetch(`https://finance-tracker-production-1547.up.railway.app/api/savings_goal/${goalName}/add?value=${value}`, {
+            method: 'PUT'
+        })
+            .then(res => res.json())
+            .then(() => fetchSavingsGoal())
+    }
+
+    return { savingsGoal, fetchSavingsGoal, createSavingsGoal, addToSavings }
 }
 
 export default useSavingsGoal;
