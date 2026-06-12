@@ -318,3 +318,34 @@ button.savings:hover {
     color: #6e6e73;
     font-size: 14px;
 }
+
+nav {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+nav a {
+    text-decoration: none;
+    color: #6e6e73;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 9px;
+    transition: all 0.15s ease;
+}
+
+nav a:hover {
+    color: #1d1d1f;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+nav a.active {
+    color: #1d1d1f;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}

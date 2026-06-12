@@ -9,7 +9,7 @@ import DisplayTransactions from "./DisplayTransactions.jsx"
 import TransactionForm from "./TransactionForm.jsx"
 import DisplaySavingsGoal from "./DisplaySavingsGoal.jsx"
 import SavingsGoalForm from "./SavingsGoalForm.jsx"
-import {Routes, Route, Link} from "react-router-dom"
+import {Routes, Route, NavLink} from "react-router-dom"
 
 function App() {
     const { budget, fetchBudgets, handleDelete, handleUpdate } = useBudgets()
@@ -27,10 +27,11 @@ function App() {
                 <p className="page-subtitle">Track your spending, savings, and goals</p>
             </div>
 
-            <nav style={{display: "flex", gap: "16px", marginBottom: "32px"}}>
-                <Link to="/budgets">Budgets</Link>
-                <Link to="/transactions">Transactions</Link>
-                <Link to="/savings">Savings</Link>
+            <nav>
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/budgets">Budgets</NavLink>
+                <NavLink to="/transactions">Transactions</NavLink>
+                <NavLink to="/savings">Savings</NavLink>
             </nav>
 
             <Routes>
@@ -92,11 +93,8 @@ function App() {
                         />
 
                     </>
-
                 }
                 />
-
-
             </Routes>
 
         </>
