@@ -15,7 +15,7 @@ import Dashboard from "./Dashboard.jsx"
 function App() {
     const { budget, fetchBudgets, handleDelete, handleUpdate } = useBudgets()
     const { category, limit, handleCategory, handleLimit, handleBuudget } = useForm(fetchBudgets)
-    const { transactions, fetchTransactions } = useTransactions()
+    const { transactions, fetchTransactions, handleDeleteTransaction } = useTransactions()
     const { amount, category: tCategory, description, date,
         setAmount, setCategory, setDescription, setDate,
         handleSubmit } = useTransactionForm(fetchTransactions, fetchBudgets)
@@ -65,8 +65,8 @@ function App() {
                     <>
                         <DisplayTransactions
                             transactions={transactions}
+                            handleDeleteTransaction={handleDeleteTransaction}
                         />
-
                         <TransactionForm amount={amount}
                                      category={tCategory}
                                      description={description}
@@ -99,6 +99,14 @@ function App() {
                 }
                 />
             </Routes>
+
+            <footer className="app-footer">
+                <p>Finance Tracker — Built by Kenneth Olisa</p>
+                <p>
+                    <a href="https://github.com/OlisaKenneth/finance-tracker" target="_blank">GitHub</a>
+                    <a href="https://olisakenneth.netlify.app" target="_blank">Portfolio</a>
+                </p>
+            </footer>
 
         </>
     )

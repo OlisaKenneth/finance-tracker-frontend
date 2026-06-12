@@ -379,3 +379,31 @@ button.savings:hover {
     color: #6e6e73;
     font-size: 14px;
 }
+
+/* ── FOOTER ── */
+.app-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #6e6e73;
+}
+
+.app-footer a {
+    color: #6e6e73;
+    text-decoration: none;
+    margin-left: 16px;
+    transition: color 0.15s ease;
+}
+
+.app-footer a:hover {
+    color: #1d1d1f;
+}
+
+.transaction-description {
+    font-size: 13px;
+    color: #6e6e73;
+}
