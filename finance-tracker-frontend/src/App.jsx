@@ -11,6 +11,8 @@ import DisplaySavingsGoal from "./DisplaySavingsGoal.jsx"
 import SavingsGoalForm from "./SavingsGoalForm.jsx"
 import {Routes, Route, NavLink} from "react-router-dom"
 import Dashboard from "./Dashboard.jsx"
+import { useState } from "react"
+import Auth from "./Auth"
 
 function App() {
     const { budget, fetchBudgets, handleDelete, handleUpdate } = useBudgets()
@@ -20,6 +22,12 @@ function App() {
         setAmount, setCategory, setDescription, setDate,
         handleSubmit } = useTransactionForm(fetchTransactions, fetchBudgets)
     const { savingsGoals, createSavingsGoal, addToSavings } = useSavingsGoal()
+    
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"))
+
+    if (!isLoggedIn) {
+        return <Auth onLogin={() => setIsLoggedIn(true)} />
+    }
 
     return (
         <>
