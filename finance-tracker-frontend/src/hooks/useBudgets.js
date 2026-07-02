@@ -1,48 +1,39 @@
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
+import apiClient from "../apiClient";
 
 function useBudgets() {
     const [budget, createBudget] = useState([])
 
-    function fetchBudgets() {
-        fetch("https://finance-tracker-production-1547.up.railway.app/api/budgets")
-            .then(res => res.json())
-            .then(data => createBudget(data))
+    async function fetchBudgets() {
+        try {
+            const data = await apiClient("/api/budgets");
+            createBudget(data);
+        } catch (error) {
+            console.error('Error fetching budgets:', error);
+        }
     }
 
     useEffect(() => fetchBudgets(), [])
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`https://finance-tracker-production-1547.up.railway.app/api/budgets/${id}`, {
-                method: 'DELETE',
-            });
-            if (response.ok) {
-                createBudget(budget.filter(user => user.id !== id));
-            } else {
-                console.error('Failed to delete item');
-            }
+            await apiClient(`/api/budgets/${id}`, { method: 'DELETE' });
+            createBudget(budget.filter(user => user.id !== id));
         } catch (error) {
             console.error('Error occurred:', error);
         }
     };
 
-
-
     const handleUpdate = async (id, newLimit, category) => {
         try {
-            const response = await fetch(`https://finance-tracker-production-1547.up.railway.app/api/budgets/${id}`, {
+            await apiClient(`/api/budgets/${id}`, {
                 method: 'PUT',
-                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     category: category,
                     monthlyLimit: newLimit
                 })
             });
-            if (response.ok) {
-                fetchBudgets()
-            } else {
-                console.error('Failed to update item');
-            }
+            fetchBudgets()
         } catch (error) {
             console.error('Error occurred:', error);
         }

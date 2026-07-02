@@ -1,35 +1,41 @@
 import { useState, useEffect } from "react";
+import apiClient from "../apiClient";
 
 function useSavingsGoal() {
     const [savingsGoals, setSavingsGoals] = useState([])
 
-    function fetchSavingsGoal() {
-        fetch("https://finance-tracker-production-1547.up.railway.app/api/savings_goal")
-            .then(res => res.json())
-            .then(data => setSavingsGoals(data))  // ← store all, not just [0]
+    async function fetchSavingsGoal() {
+        try {
+            const data = await apiClient("/api/savings_goal");
+            setSavingsGoals(data);
+        } catch (error) {
+            console.error('Error fetching savings goals:', error);
+        }
     }
-
 
     useEffect(() => fetchSavingsGoal(), [])
 
-
-
-    function createSavingsGoal(goalName, targetAmount, months) {
-        fetch("https://finance-tracker-production-1547.up.railway.app/api/savings_goal", {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ goalName, targetAmount, months })
-        })
-            .then(res => res.json())
-            .then(() => fetchSavingsGoal())
+    async function createSavingsGoal(goalName, targetAmount, months) {
+        try {
+            await apiClient("/api/savings_goal", {
+                method: 'POST',
+                body: JSON.stringify({ goalName, targetAmount, months })
+            });
+            fetchSavingsGoal()
+        } catch (error) {
+            console.error('Error creating savings goal:', error);
+        }
     }
 
-    function addToSavings(goalName, value) {
-        fetch(`https://finance-tracker-production-1547.up.railway.app/api/savings_goal/${goalName}/add?value=${value}`, {
-            method: 'PUT'
-        })
-            .then(res => res.json())
-            .then(() => fetchSavingsGoal())
+    async function addToSavings(goalName, value) {
+        try {
+            await apiClient(`/api/savings_goal/${goalName}/add?value=${value}`, {
+                method: 'PUT'
+            });
+            fetchSavingsGoal()
+        } catch (error) {
+            console.error('Error adding to savings:', error);
+        }
     }
 
     return { savingsGoals, createSavingsGoal, addToSavings }
