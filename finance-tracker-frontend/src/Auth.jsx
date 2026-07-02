@@ -1,12 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const API_BASE = "https://finance-tracker-production-1547.up.railway.app";
 
 export default function Auth({ onLogin }) {
-    const [mode, setMode] = useState("login"); // "login" or "register"
+    const [mode, setMode] = useState("login");
     const [form, setForm] = useState({ name: "", email: "", password: "", role: "USER" });
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+
+    // break out of #root max-width constraint while on auth page
+    useEffect(() => {
+        const root = document.getElementById("root");
+        if (root) {
+            root.style.maxWidth = "100%";
+            root.style.padding = "0";
+            root.style.margin = "0";
+        }
+        return () => {
+            // restore when leaving auth page
+            if (root) {
+                root.style.maxWidth = "";
+                root.style.padding = "";
+                root.style.margin = "";
+            }
+        };
+    }, []);
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -39,11 +57,9 @@ export default function Auth({ onLogin }) {
             }
 
             if (mode === "login") {
-                // login returns the token directly as a string
                 localStorage.setItem("token", data);
                 onLogin();
             } else {
-                // register succeeded — switch to login
                 setMode("login");
                 setForm({ name: "", email: form.email, password: "", role: "USER" });
                 setError("");
@@ -130,10 +146,8 @@ export default function Auth({ onLogin }) {
                         />
                     </div>
 
-                    {/* Error message */}
                     {error && <div className="auth-error">{error}</div>}
 
-                    {/* Submit */}
                     <button
                         className="auth-submit"
                         onClick={handleSubmit}
@@ -159,7 +173,7 @@ export default function Auth({ onLogin }) {
                 </p>
             </div>
 
-            {/* Right panel — decorative */}
+            {/* Right panel */}
             <div className="auth-panel">
                 <div className="auth-panel-content">
                     <div className="auth-panel-stat">
