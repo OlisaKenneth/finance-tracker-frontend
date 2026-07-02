@@ -1,4 +1,5 @@
 import { useState } from "react";
+import apiClient from "../apiClient";
 
 function useTransactionForm(fetchTransactions, fetchBudgets) {
     const [amount, setAmount] = useState(0)
@@ -6,22 +7,22 @@ function useTransactionForm(fetchTransactions, fetchBudgets) {
     const [description, setDescription] = useState("")
     const [date, setDate] = useState("")
 
-    function handleSubmit() {
-        fetch("https://finance-tracker-production-1547.up.railway.app/api/transactions", {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ amount, category, description, date })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log("transaction created: ", data)
-                fetchTransactions()
-                fetchBudgets()    // ← add this
-                setAmount("")
-                setCategory("")
-                setDescription("")
-                setDate("")
+    async function handleSubmit() {
+        try {
+            const data = await apiClient("/api/transactions", {
+                method: 'POST',
+                body: JSON.stringify({ amount, category, description, date })
             })
+            console.log("transaction created: ", data)
+            fetchTransactions()
+            fetchBudgets()
+            setAmount("")
+            setCategory("")
+            setDescription("")
+            setDate("")
+        } catch (error) {
+            console.error("Error creating transaction:", error)
+        }
     }
 
     return { amount, category, description, date, setAmount, setCategory, setDescription, setDate, handleSubmit }
