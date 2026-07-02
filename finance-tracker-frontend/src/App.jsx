@@ -22,7 +22,7 @@ function App() {
         setAmount, setCategory, setDescription, setDate,
         handleSubmit } = useTransactionForm(fetchTransactions, fetchBudgets)
     const { savingsGoals, createSavingsGoal, addToSavings } = useSavingsGoal()
-    
+
     const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"))
 
     if (!isLoggedIn) {
