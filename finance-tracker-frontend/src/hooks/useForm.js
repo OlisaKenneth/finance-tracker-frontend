@@ -1,4 +1,5 @@
-import {useState} from "react";
+import { useState } from "react";
+import apiClient from "../apiClient";
 
 function useForm(fetchBudgets) {
     const [category, setCategory] = useState("")
@@ -17,26 +18,23 @@ function useForm(fetchBudgets) {
         monthlyLimit: limit
     }
 
-
-    function handleBuudget() {
-        fetch("https://finance-tracker-production-1547.up.railway.app/api/budgets", {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(values)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log("budget created: ", data)
-                fetchBudgets()
-                setCategory("")
-                setLimit(0)
+    async function handleBuudget() {
+        try {
+            const data = await apiClient("/api/budgets", {
+                method: 'POST',
+                body: JSON.stringify(values)
             })
+            console.log("budget created: ", data)
+            fetchBudgets()
+        } catch (error) {
+            console.error("Error creating budget:", error)
+        }
 
         setCategory("")
         setLimit(0)
     }
 
-    return {handleBuudget, handleCategory, handleLimit, category}
+    return { handleBuudget, handleCategory, handleLimit, category }
 
 }
 export default useForm;
