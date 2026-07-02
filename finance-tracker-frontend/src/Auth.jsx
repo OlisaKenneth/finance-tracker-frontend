@@ -57,7 +57,7 @@ export default function Auth({ onLogin }) {
             }
 
             if (mode === "login") {
-                localStorage.setItem("token", data);
+                localStorage.setItem("token", data.token);
                 onLogin();
             } else {
                 setMode("login");
