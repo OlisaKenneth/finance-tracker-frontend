@@ -13,7 +13,9 @@ function useSavingsGoal() {
         }
     }
 
-    useEffect(() => fetchSavingsGoal(), [])
+    useEffect(() => {
+        fetchSavingsGoal()T
+    }, [])
 
     async function createSavingsGoal(goalName, targetAmount, months) {
         try {
@@ -38,7 +40,7 @@ function useSavingsGoal() {
         }
     }
 
-    return { savingsGoals, createSavingsGoal, addToSavings }
+    return { savingsGoals, fetchSavingsGoal, createSavingsGoal, addToSavings }
 }
 
 export default useSavingsGoal;

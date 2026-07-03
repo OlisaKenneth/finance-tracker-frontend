@@ -13,7 +13,9 @@ function useTransactions() {
         }
     }
 
-    useEffect(() => fetchTransactions(), [])
+    useEffect(() => {
+        fetchTransactions()
+    }, [])
 
     const handleDeleteTransaction = async (id) => {
         try {

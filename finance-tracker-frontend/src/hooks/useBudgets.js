@@ -13,7 +13,9 @@ function useBudgets() {
         }
     }
 
-    useEffect(() => fetchBudgets(), [])
+    useEffect(() => {
+        fetchBudgets()
+    }, [])
 
     const handleDelete = async (id) => {
         try {
