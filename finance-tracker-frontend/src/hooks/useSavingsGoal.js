@@ -13,7 +13,10 @@ function useSavingsGoal() {
         }
     }
 
-    useEffect(() => fetchSavingsGoal(), [])
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        fetchSavingsGoal()
+    }, [])
 
     async function createSavingsGoal(goalName, targetAmount, months) {
         try {

@@ -337,20 +337,27 @@ h3 {
     flex-shrink: 0;
 }
 
+
+.app-header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 .logout-btn {
-    margin-left: 1rem;
-    padding: 0.4rem 0.9rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    margin-left: 16px;
+    padding: 8px 4px;
+    border: none;
     background: transparent;
-    color: inherit;
-    font-size: 0.9rem;
+    color: #6e6e73;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.15s ease;
+    transition: color 0.15s ease;
 }
 
 .logout-btn:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    color: #ff3b30;
 }
 
 /* ── Responsive ── */

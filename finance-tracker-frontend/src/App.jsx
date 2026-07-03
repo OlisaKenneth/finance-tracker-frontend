@@ -53,13 +53,16 @@ function App() {
         <>
             <header className="app-header">
                 <p className="app-logo">Finance Tracker</p>
-                <nav>
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/budgets">Budgets</NavLink>
-                    <NavLink to="/transactions">Transactions</NavLink>
-                    <NavLink to="/savings">Savings</NavLink>
+                <div className="app-header-right">
+                    <nav>
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/budgets">Budgets</NavLink>
+                        <NavLink to="/transactions">Transactions</NavLink>
+                        <NavLink to="/savings">Savings</NavLink>
+                    </nav>
                     <button className="logout-btn" onClick={handleLogout}>Log out</button>
-                </nav>
+                </div>
+
             </header>
 
             <Routes>
