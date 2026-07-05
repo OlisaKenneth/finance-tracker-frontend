@@ -42,11 +42,21 @@ function ConnectBank() {
 
     // Step 3: this function runs automatically WHEN the user
     // successfully finishes the Plaid popup flow
-    const onSuccess = useCallback((publicToken, metadata) => {
+    const onSuccess = useCallback(async (publicToken, metadata) => {
         console.log("Plaid public_token received:", publicToken);
-        console.log("Plaid metadata:", metadata);
-        // Next step (coming soon): send publicToken to our
-        // own backend to trade it for a permanent access_token
+
+        try {
+            // Send this temporary claim ticket to OUR backend.
+            // Our backend will trade it with Plaid for the
+            // PERMANENT key (access_token) and save it safely.
+            await apiClient("/api/plaid/exchange-token", {
+                method: "POST",
+                body: JSON.stringify({ publicToken }),
+            });
+            console.log("Bank connected successfully!");
+        } catch (error) {
+            console.error("Error exchanging public token:", error);
+        }
     }, []);
 
     // Step 2: usePlaidLink is Plaid's own ready-made hook —
