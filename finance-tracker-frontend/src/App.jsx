@@ -3,16 +3,16 @@ import useForm from './hooks/useForm.js'
 import useTransactions from './hooks/useTransactions.js'
 import useTransactionForm from './hooks/useTransactionForm.js'
 import useSavingsGoal from './hooks/useSavingsGoal.js'
-import DisplayBudget from "./DisplayBudget.jsx"
-import Form from "./Form.jsx"
-import DisplayTransactions from "./DisplayTransactions.jsx"
-import TransactionForm from "./TransactionForm.jsx"
-import DisplaySavingsGoal from "./DisplaySavingsGoal.jsx"
-import SavingsGoalForm from "./SavingsGoalForm.jsx"
+import DisplayBudget from "./components/DisplayBudget.jsx"
+import Form from "./components/Form.jsx"
+import DisplayTransactions from "./components/DisplayTransactions.jsx"
+import TransactionForm from "./components/TransactionForm.jsx"
+import DisplaySavingsGoal from "./components/DisplaySavingsGoal.jsx"
+import SavingsGoalForm from "./components/SavingsGoalForm.jsx"
 import {Routes, Route, NavLink} from "react-router-dom"
-import Dashboard from "./Dashboard.jsx"
+import Dashboard from "./pages/Dashboard.jsx"
 import { useState } from "react"
-import Auth from "./Auth"
+import Auth from "./pages/Auth.jsx"
 
 function App() {
     const { budget, fetchBudgets, handleDelete, handleUpdate } = useBudgets()

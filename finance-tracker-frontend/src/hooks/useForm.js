@@ -1,5 +1,5 @@
 import { useState } from "react";
-import apiClient from "../apiClient";
+import apiClient from "../api/apiClient.js";
 
 function useForm(fetchBudgets) {
     const [category, setCategory] = useState("")

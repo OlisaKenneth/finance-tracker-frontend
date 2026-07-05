@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom"
+import ConnectBank from "../components/ConnectBank"
 
 function Dashboard({ budget, transactions, savingsGoals }) {
     const totalLimit = budget.reduce((sum, b) => sum + b.monthlyLimit, 0)
@@ -8,6 +9,8 @@ function Dashboard({ budget, transactions, savingsGoals }) {
 
     return (
         <div>
+            <ConnectBank />
+
             <div className="stat-grid">
                 <div className="stat-card">
                     <p className="stat-label">Total Budget</p>
