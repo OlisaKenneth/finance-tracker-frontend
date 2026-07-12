@@ -42,7 +42,7 @@ function ConnectBank() {
 
     // Step 3: this function runs automatically WHEN the user
     // successfully finishes the Plaid popup flow
-    const onSuccess = useCallback(async (publicToken, metadata) => {
+    const onSuccess = useCallback(async (publicToken) => {
         console.log("Plaid public_token received:", publicToken);
 
         try {
