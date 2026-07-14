@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom"
 import ConnectBank from "../components/ConnectBank"
 
-function Dashboard({ budget, transactions, savingsGoals }) {
+// onSyncComplete — passed in from App.jsx
+// it's the fetchTransactions function that refetches
+// all transactions from the backend after bank sync
+function Dashboard({ budget, transactions, savingsGoals, onSyncComplete }) {
     const totalLimit = budget.reduce((sum, b) => sum + b.monthlyLimit, 0)
     const totalSpent = budget.reduce((sum, b) => sum + b.spent, 0)
     const remaining = totalLimit - totalSpent
@@ -9,7 +12,9 @@ function Dashboard({ budget, transactions, savingsGoals }) {
 
     return (
         <div>
-            <ConnectBank />
+            {/* pass onSyncComplete into ConnectBank so it can
+                trigger a data refresh after the sync finishes */}
+            <ConnectBank onSyncComplete={onSyncComplete} />
 
             <div className="stat-grid">
                 <div className="stat-card">

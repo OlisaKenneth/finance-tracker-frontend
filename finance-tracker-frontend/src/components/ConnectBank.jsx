@@ -17,11 +17,18 @@ import apiClient from "../api/apiClient";
  * 3. When the user finishes "logging into" the fake bank
  *    inside that popup, Plaid gives us back a public_token
  *
- * 4. For now, we just log that public_token to the console
- *    so we can SEE it worked — the next step (sending it to
- *    our backend to trade for a permanent key) comes after
+ * 4. We send that public_token to our backend to trade for
+ *    a permanent access_token and save it
+ *
+ * 5. NEW: immediately after the bank connects, we call
+ *    sync-transactions automatically so the user's bank
+ *    transactions appear right away — no manual step needed
  */
-function ConnectBank() {
+function ConnectBank({ onSyncComplete }) {
+    // onSyncComplete — a function passed in from Dashboard
+    // that we call after syncing so the dashboard refreshes
+    // its transaction count automatically
+
     const [linkToken, setLinkToken] = useState(null);
 
     // Step 1: ask our backend for a link_token the moment
@@ -46,18 +53,38 @@ function ConnectBank() {
         console.log("Plaid public_token received:", publicToken);
 
         try {
-            // Send this temporary claim ticket to OUR backend.
-            // Our backend will trade it with Plaid for the
-            // PERMANENT key (access_token) and save it safely.
+            // Step 4: send the temporary ticket to our backend
+            // to trade it for a permanent access_token and save it
             await apiClient("/api/plaid/exchange-token", {
                 method: "POST",
                 body: JSON.stringify({ publicToken }),
             });
             console.log("Bank connected successfully!");
+
+            // Step 5: NEW — immediately pull transactions from
+            // Plaid and save them to our database automatically
+            // the user never has to do this manually
+            const syncedTransactions = await apiClient(
+                "/api/plaid/sync-transactions",
+                { method: "POST" }
+            );
+            console.log(
+                "Transactions synced automatically:",
+                syncedTransactions
+            );
+
+            // Step 6: tell the Dashboard to refresh so the
+            // new transaction count appears immediately
+            // onSyncComplete is optional — only runs if Dashboard passed it in
+            if (onSyncComplete) {
+                onSyncComplete();
+            }
         } catch (error) {
-            console.error("Error exchanging public token:", error);
+            console.error("Error connecting bank or syncing:", error);
         }
-    }, []);
+    }, [onSyncComplete]);
+    // onSyncComplete added to the dependency array because
+    // we use it inside the callback — React requires this
 
     // Step 2: usePlaidLink is Plaid's own ready-made hook —
     // it builds the popup for us. We just hand it our token

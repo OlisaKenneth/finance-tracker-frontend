@@ -71,6 +71,7 @@ function App() {
                         budget={budget}
                         transactions={transactions}
                         savingsGoals={savingsGoals}
+                        onSyncComplete={fetchTransactions}
                     />
                 } />
 
