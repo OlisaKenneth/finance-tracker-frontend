@@ -77,7 +77,7 @@ function ConnectBank({ onSyncComplete }) {
             // new transaction count appears immediately
             // onSyncComplete is optional — only runs if Dashboard passed it in
             if (onSyncComplete) {
-                onSyncComplete();
+                await onSyncComplete();
             }
         } catch (error) {
             console.error("Error connecting bank or syncing:", error);
